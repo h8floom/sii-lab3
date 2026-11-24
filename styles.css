@@ -1,0 +1,200 @@
+/* UI direction and review adapted from Unslop by Damir Sokolovsky, CC BY 4.0 */
+:root {
+  --ink: #20201e;
+  --muted: #55554e;
+  --line: #ddddd6;
+  --page: #f5f5f3;
+  --paper: #fff;
+  --step: #edede7;
+}
+
+.stApp {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-testid="stMainBlockContainer"] {
+  max-width: 1480px;
+  padding: 52px 32px 40px;
+}
+
+[data-testid="stSidebar"] { border-right: 1px solid var(--line); }
+[data-testid="stSidebarUserContent"] { padding: 8px 4px 24px; }
+
+[data-testid="stHeader"] { background: var(--page); }
+[data-testid="stSidebar"][aria-expanded="true"] [data-testid="stSidebarCollapseButton"] {
+  opacity: 1;
+  visibility: visible;
+}
+[data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapseButton"] button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+[data-testid="stExpandSidebarButton"]:hover, [data-testid="stSidebarCollapseButton"] button:hover {
+  background: var(--step);
+}
+[data-testid="stExpandSidebarButton"] > span, [data-testid="stSidebarCollapseButton"] button > span {
+  display: none;
+}
+[data-testid="stExpandSidebarButton"]::after, [data-testid="stSidebarCollapseButton"] button::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+}
+[data-testid="stExpandSidebarButton"]::after {
+  content: "" / "Развернуть панель";
+  transform: translateX(-2px) rotate(-45deg);
+}
+[data-testid="stSidebarCollapseButton"] button::after {
+  content: "" / "Свернуть панель";
+  transform: translateX(2px) rotate(135deg);
+}
+
+[data-testid="stVerticalBlock"] { gap: 16px; }
+
+.stApp h1, .stApp h2, .stApp h3, .stApp h4 {
+  color: var(--ink);
+  font-family: inherit;
+  font-weight: 600;
+  text-wrap: balance;
+  scroll-margin-top: 56px;
+}
+
+.stApp h1 { font-size: clamp(28px, 2.7vw, 36px); line-height: 1.15; margin: 0; padding: 0; }
+.stApp h2 { font-size: 22px; line-height: 28px; padding: 0; }
+.stApp h3 { font-size: 17px; line-height: 24px; padding: 0; }
+.stApp h4 { font-size: 15px; line-height: 20px; padding: 0; }
+
+.st-key-page_intro { gap: 8px; }
+.st-key-page_intro p { color: var(--muted); max-width: 72ch; }
+
+.brand {
+  padding: 0 8px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.brand strong { font-size: 17px; font-weight: 600; display: block; }
+.brand small { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
+.session-status { padding: 12px 8px 0; border-top: 1px solid var(--line); }
+.session-status p { margin: 0 0 4px; font-size: 13px; color: var(--muted); }
+.session-status strong { font-weight: 600; }
+
+.st-key-section [role="radiogroup"] { align-items: stretch; gap: 4px; }
+.st-key-section [data-baseweb="radio"] {
+  padding: 3px 8px;
+  min-height: 36px;
+  margin: 0;
+  border-radius: 8px;
+}
+.st-key-section [data-baseweb="radio"]:is(:hover, :has(input:checked)) { background: var(--step); }
+.st-key-section [data-baseweb="radio"] p { font-size: 14px; font-weight: 500; }
+
+.st-key-source_panel, .st-key-data_overview, .st-key-train_controls,
+.st-key-quality_panel, .st-key-client_form, .st-key-client_result {
+  background: var(--paper);
+  border-radius: 8px;
+}
+
+.stApp button { font-family: inherit; touch-action: manipulation; }
+.stApp button:focus-visible, .stApp a:focus-visible, .stApp summary:focus-visible,
+[data-baseweb="radio"]:has(input:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+  border: 1px dashed #a9a99e;
+  height: auto;
+  min-height: 68px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+[data-testid="stFileUploaderDropzoneInstructions"] { flex: 1 1 auto; width: auto; gap: 8px; }
+[data-testid="stFileUploaderDropzoneInstructions"] > div { display: none; }
+[data-testid="stFileUploaderDropzoneInstructions"]::after {
+  content: "Перетащите CSV сюда";
+  font-size: 14px;
+  color: var(--muted);
+}
+[data-testid="stFileUploaderDropzoneInstructions"] svg { width: 20px; height: 20px; color: var(--muted); }
+[data-testid="stFileUploaderDropzone"] button { font-size: 0; gap: 0; }
+[data-testid="stFileUploaderDropzone"] button::after {
+  content: "Выбрать файл";
+  font-size: 14px;
+}
+[data-testid="stMetricLabel"] p { font-size: 13px; font-weight: 500; }
+[data-testid="stMetricValue"] { font-size: 28px; font-weight: 500; line-height: 36px; }
+[data-testid="stCaptionContainer"] { opacity: 1; }
+[data-testid="stCaptionContainer"] p { color: var(--muted); }
+[data-testid="stAlert"] p { overflow-wrap: anywhere; }
+
+.class-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.class-table th, .class-table td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+.class-table th { color: var(--muted); font-weight: 600; background: var(--page); }
+.class-table tr > :last-child { text-align: right; }
+.class-table tbody tr:hover { background: var(--page); }
+
+.chart { margin: 0; }
+.chart img { max-width: 100%; height: auto; display: block; }
+.tree-chart { overflow-x: auto; }
+.tree-chart img { min-width: min(760px, var(--chart-width)); max-width: 100%; }
+.result-class {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.branch-path {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.branch-path li {
+  position: relative;
+  margin-left: 4px;
+  padding: 0 0 12px 16px;
+  border-left: 1px solid var(--line);
+}
+.branch-path li::before {
+  position: absolute;
+  top: 7px;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  content: "";
+}
+.branch-path li:last-child { border-color: transparent; padding-bottom: 0; }
+.branch-path strong { font-size: 15px; font-weight: 600; }
+.branch-path span { display: block; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  z-index: 10;
+  transform: translateY(0);
+  padding: 4px 8px;
+  background: var(--paper);
+}
+
+@media (max-width: 760px) {
+  [data-testid="stMainBlockContainer"] { padding: 52px 16px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stApp *, .stApp *::before, .stApp *::after { scroll-behavior: auto; transition: none; }
+}
